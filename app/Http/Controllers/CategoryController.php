@@ -14,12 +14,12 @@ class CategoryController extends Controller
 {
     public function index(Category $category)
     {
-        return new CategoryResource($category);
+        return new CategoryResource($category->load('products'));
     }
 
     public function all()
     {
-        return new CategoryCollection(Category::all());
+        return new CategoryCollection(Category::all()->load('products'));
     }
 
     public function store(Request $request)
@@ -31,7 +31,7 @@ class CategoryController extends Controller
     public function attachCategory(Product $product,Category $category)
     {
             $category->products()->attach($product->id);
-            return new CategoryResource($category);
+            return new CategoryResource($category->load('products'));
     }
 
 }

@@ -13,12 +13,12 @@ class ProductController extends Controller
     public function index(Product $product)
     {
 //        dd($product->categories);
-        return new ProductResource($product);
+        return new ProductResource($product->load('categories'));
     }
 
     public function all()
     {
-        return new ProductCollection(Product::all());
+        return new ProductCollection(Product::all()->load('categories'));
     }
 
     public function store(Request $request)
@@ -31,7 +31,7 @@ class ProductController extends Controller
     {
 
         $product->categories()->attach($category);
-        return new ProductResource($product);
+        return new ProductResource($product->load('categories'));
 
     }
 
