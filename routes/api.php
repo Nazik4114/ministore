@@ -24,6 +24,9 @@ Route::group([
     Route::get('/index/{product}',[\App\Http\Controllers\ProductController::class,'index']);
     Route::get('/all',[\App\Http\Controllers\ProductController::class,'all']);
     Route::post('/attach/{product}/{category}',[\App\Http\Controllers\ProductController::class,'attachCategory']);
+    Route::post('/attachSpec/{product}',[\App\Http\Controllers\ProductController::class,'attachSpecifications']);
+    Route::get('/filter',[\App\Http\Controllers\ProductController::class,'filter']);
+
 });
 Route::group([
     'prefix'=>'category'
@@ -32,6 +35,15 @@ Route::group([
     Route::get('/index/{category}',[\App\Http\Controllers\CategoryController::class,'index']);
     Route::get('/all',[\App\Http\Controllers\CategoryController::class,'all']);
     Route::post('/attach/{product}/{category}',[\App\Http\Controllers\CategoryController::class,'attachCategory']);
+
+});
+
+Route::group([
+    'prefix'=>'specification'
+],function(){
+    Route::get('/all',[\App\Http\Controllers\SpecificationController::class,'all']);
+    Route::post('/attach/{product}/{category}',[\App\Http\Controllers\CategoryController::class,'attachCategory']);
+
 });
 
 

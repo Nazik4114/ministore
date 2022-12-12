@@ -14,4 +14,8 @@ class Product extends Model
     {
         return $this->belongsToMany(Category::class,'product_category');
     }
+    public function specifications()
+    {
+        return $this->belongsToMany(Specification::class,'product_specification');
+    }
 }

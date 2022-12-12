@@ -18,8 +18,10 @@ class ProductResource extends JsonResource
         return [
             'id'=>$this->id,
             'title'=>$this->title,
-            'categories' => CategoryResource::collection($this->whenLoaded('categories')),
             'description'=>$this->description,
+            'categories' => CategoryResource::collection($this->whenLoaded('categories')),
+            'specifications' => SpecificationResource::collection($this->whenLoaded('specifications')),
+
         ];
     }
 }
