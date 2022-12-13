@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('product_delivery', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')->references('id')->on('products')->onDelete('cascade');
-            $table->foreignId('delivery_id')->references('id')->on('deliveries')->onDelete('cascade');
+            $table->foreignIdFor(\App\Models\Product::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(\App\Models\Delivery::class)->constrained()->cascadeOnDelete();
         });
     }
 

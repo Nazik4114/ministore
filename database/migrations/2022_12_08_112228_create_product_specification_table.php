@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('product_specification', function (Blueprint $table) {
-            $table->foreignId('product_id')->references('id')->on('products')->onDelete('cascade');
-            $table->foreignId('specification_id')->references('id')->on('specifications')->onDelete('cascade');
+            $table->foreignIdFor(\App\Models\Product::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(\App\Models\Specification::class)->constrained()->cascadeOnDelete();
         });
     }
 

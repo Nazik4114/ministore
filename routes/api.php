@@ -41,7 +41,7 @@ Route::group([
 Route::group([
     'prefix'=>'specification'
 ],function(){
-    Route::get('/all',[\App\Http\Controllers\SpecificationController::class,'all']);
+    Route::get('/all/{category}',[\App\Http\Controllers\SpecificationController::class,'all']);
     Route::post('/attach/{product}/{category}',[\App\Http\Controllers\CategoryController::class,'attachCategory']);
 
 });

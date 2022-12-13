@@ -7,6 +7,7 @@ use App\Http\Resources\ProductResource;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Specification;
+use App\Services\Filter;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -53,48 +54,10 @@ class ProductController extends Controller
     }
     public function filter(Request $request)
     {
-        $products=Product::all();
-        $fp=[];
-        foreach ($products as $p)
-        {
-            if($this->check($p,$request->all()))
-            {
-//                dd($p);
-                $fp[]=$p->load('specifications');
-            }
-        }
-//
-//        foreach ($request->all() as $key=>$value)
-//        {
-//        $product=$product->specifications->where($key,$value);
-//        }
+      $filter=new Filter($request->all());
+        $fp=$filter->filter();
+
         return new ProductCollection($fp);
     }
 
-    public function check(Product $product, $mas)
-    {
-        $flag=false;
-        $spec=$product->specifications->toArray();
-        foreach ($mas as $key=>$value) {
-            $flag=false;
-            foreach ($spec as $item) {
-//                dd(array_key_exists($key, $item));
-                if (strcmp($item['key'],$key)==0) {
-                    if (strcmp($item['value'],$value) ==0) {
-                        $flag=true;
-                    } else {
-                        return false;
-                    }
-                }
-            }
-        }
-        if($flag==false)
-        {
-            return false;
-        }
-        else{
-            return true;
-        }
-
-    }
 }

@@ -8,7 +8,9 @@ use App\Http\Resources\ProductCollection;
 use App\Http\Resources\ProductResource;
 use App\Models\Category;
 use App\Models\Product;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Date;
 
 class CategoryController extends Controller
 {
