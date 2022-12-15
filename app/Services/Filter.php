@@ -8,56 +8,29 @@ use Illuminate\Http\Request;
 
 class Filter
 {
-    protected $filters;
-    public function __construct($filters)
+    protected $filter=[
+        'category'=>CategoryFilter::class,
+    ];
+
+    protected $filters = [
+        'price' => PriceFilter::class,
+        'category' => CategoryFilter::class,
+        'brand' => BrandFilter::class,
+    ];
+
+    public function apply($query)
     {
-        $this->filters=$filters;
+        foreach ($this->receivedFilters() as $name => $value) {
+            $filterInstance = new $this->filters[$name];
+            $query = $filterInstance($query, $value);
+        }
+
+        return $query;
     }
 
-    public function filter()
-    {
-        $products=Product::all();
-        $fp=[];
-        foreach ($products as $p)
-        {
-            if($this->check($p,$this->filters))
-            {
-//                dd($p);
-                $fp[]=$p->load('specifications');
-            }
-        }
-//
-//        foreach ($request->all() as $key=>$value)
-//        {
-//        $product=$product->specifications->where($key,$value);
-//        }
-        return $fp;
-    }
 
-    public function check(Product $product, $mas)
+    public function receivedFilters()
     {
-        $flag=false;
-        $spec=$product->specifications->toArray();
-        foreach ($mas as $key=>$value) {
-            $flag=false;
-            foreach ($spec as $item) {
-//                dd(array_key_exists($key, $item));
-                if (strcmp($item['key'],$key)==0) {
-                    if (strcmp($item['value'],$value) ==0) {
-                        $flag=true;
-                    } else {
-                        return false;
-                    }
-                }
-            }
-        }
-        if($flag==false)
-        {
-            return false;
-        }
-        else{
-            return true;
-        }
-
+        return request()->only(array_keys($this->filters));
     }
 }

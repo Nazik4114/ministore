@@ -17,6 +17,7 @@ class SpecificationResource extends JsonResource
         return [
             'key'=>$this->key,
             'value'=>$this->value,
+            'count'=>$this->count,
         ];
     }
 }

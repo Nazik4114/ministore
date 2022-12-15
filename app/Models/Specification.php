@@ -18,8 +18,7 @@ class Specification extends Model
     public function scopeDist($query)
     {
 //        return $query->distinct()->select('key')->get();
-        return $query->selectRaw('`key`,`value`, COUNT(`key`) as count')
-            ->groupBy(['key','value']);
+        return $query->selectRaw('DISTINCT `key`,`value` COUNT(`key`) as count')->groupBy('key');
 
     }
     public function scopeCategory($query,Category $category)
@@ -28,7 +27,6 @@ class Specification extends Model
         foreach ($category->products as $product) {
             $ids[]=$product->id;
         }
-//        return $query->distinct()->select('key')->get();
         return $query->whereRelation('product',function($q)use($ids){$q->whereIn('id',$ids);});
 
     }

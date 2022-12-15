@@ -41,13 +41,12 @@ class ProductController extends Controller
         $mas_id=[];
         foreach ($request->all() as $key=>$value)
         {
-            $spec=Specification::create([
-                'key'=>$key,
-                'value'=>$value],
-            );
-            $mas_id[]=$spec->id;
-        }
-//        dd($mas_id);
+                $spec = Specification::create([
+                    'key' => $key,
+                    'value' => $value],
+                );
+                $mas_id[] = $spec->id;
+            }
         $product->specifications()->attach($mas_id);
         return new ProductResource($product->load(['categories','specifications']));
 

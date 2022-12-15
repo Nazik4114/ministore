@@ -17,8 +17,8 @@ class SpecificationFactory extends Factory
     public function definition()
     {
         return [
-            'key'=>$this->faker->word,
-            'value'=>$this->faker->internetExplorer,
+            'key'=>'price',
+            'value'=>$this->faker->numberBetween(100,10000),
         ];
     }
 }
