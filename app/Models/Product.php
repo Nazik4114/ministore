@@ -20,4 +20,8 @@ class Product extends Model
     {
         return $this->belongsToMany(Specification::class,'product_specification');
     }
+    public function scopeFilter($query, $filters)
+    {
+        return $filters->apply($query);
+    }
 }

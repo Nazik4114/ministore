@@ -14,4 +14,9 @@ class Category extends Model
     {
         return $this->belongsToMany(Product::class,'product_category');
     }
+    public function scopeDist($query)
+    {
+        return $query->select('name')->withCount('products as count');
+
+    }
 }

@@ -17,7 +17,6 @@ class Specification extends Model
     }
     public function scopeDist($query)
     {
-//        return $query->distinct()->select('key')->get();
         return $query->selectRaw('DISTINCT `key`,`value` COUNT(`key`) as count')->groupBy('key');
 
     }

@@ -6,14 +6,21 @@ use App\Models\Category;
 
 class CategoryFilter
 {
-public function __invoke()
-{
-    function __invoke($query, Category $category)
+    protected $view='radiobutton';
+
+    protected $name='category';
+
+    public function filtered($query, $category)
     {
-        return $query->whereHas('categories', function ($query) use ($category) {
-            $query->where('id', $category->id);
-        });
+        return $query->whereRelation('categories','id','=', $category);
     }
-}
+
+    public function getFilters()
+    {
+        return [
+            'name'=>$this->name,
+            'type'=>$this->view,
+        ];
+    }
 
 }

@@ -1,21 +1,13 @@
 <?php
 
 namespace App\Services;
-use App\Http\Resources\ProductCollection;
-use App\Models\Product;
-use Faker\Provider\Biased;
-use Illuminate\Http\Request;
+
 
 class Filter
 {
-    protected $filter=[
+    protected $filters=[
         'category'=>CategoryFilter::class,
-    ];
 
-    protected $filters = [
-        'price' => PriceFilter::class,
-        'category' => CategoryFilter::class,
-        'brand' => BrandFilter::class,
     ];
 
     public function apply($query)

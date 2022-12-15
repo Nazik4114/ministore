@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CategoryFilterCollection;
+use App\Http\Resources\CategoryFilterResource;
 use App\Http\Resources\ProductCollection;
 use App\Http\Resources\ProductResource;
 use App\Models\Category;
@@ -51,12 +53,11 @@ class ProductController extends Controller
         return new ProductResource($product->load(['categories','specifications']));
 
     }
-    public function filter(Request $request)
+    public function filter(Filter $filter)
     {
-      $filter=new Filter($request->all());
-        $fp=$filter->filter();
-
-        return new ProductCollection($fp);
+//        dd(new CategoryFilterResource(Category::dist()->get()[0]));
+     return new CategoryFilterCollection(Category::dist()->get());
+//        return new ProductCollection(Product::filter($filter)->get()->load('categories'));
     }
 
 }
