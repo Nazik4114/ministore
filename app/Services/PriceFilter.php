@@ -24,7 +24,7 @@ class PriceFilter extends BaseFilter
     {
         return [
             'name'=>$this->name,
-            'type'=>$this->view,
+            'view'=>$this->view,
             'max'=>Specification::maxPrice(),
             'min'=>Specification::minPrice(),
         ];

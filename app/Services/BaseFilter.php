@@ -9,7 +9,7 @@ abstract class BaseFilter
 
     protected $view='input';
 
-    abstract function filtered($query, $range);
+    abstract function filtered($query, $value);
     abstract function getFilters();
 
 

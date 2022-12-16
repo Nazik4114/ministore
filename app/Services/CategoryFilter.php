@@ -20,7 +20,7 @@ class CategoryFilter  extends BaseFilter
     {
         return [
             'name'=>$this->name,
-            'type'=>$this->view,
+            'view'=>$this->view,
             'filters'=>[ new CategoryFilterCollection(Category::dist()->get())]
         ];
     }

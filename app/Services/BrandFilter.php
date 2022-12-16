@@ -22,7 +22,7 @@ class BrandFilter extends BaseFilter
     {
         return [
             'name'=>$this->name,
-            'type'=>$this->view,
+            'view'=>$this->view,
             'brands'=>[BrandResource::collection(Specification::brands()->get())],
         ];
 
