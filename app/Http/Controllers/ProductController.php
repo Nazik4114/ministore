@@ -55,9 +55,11 @@ class ProductController extends Controller
     }
     public function filter(Filter $filter)
     {
-//        dd(new CategoryFilterResource(Category::dist()->get()[0]));
-     return new CategoryFilterCollection(Category::dist()->get());
-//        return new ProductCollection(Product::filter($filter)->get()->load('categories'));
+        return new ProductCollection(Product::filter($filter)->get()->load('categories','specifications'));
     }
 
+    public function getFilters(Filter $filter)
+    {
+        return $filter->getFilters();
+    }
 }

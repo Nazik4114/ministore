@@ -2,9 +2,10 @@
 
 namespace App\Services;
 
+use App\Http\Resources\CategoryFilterCollection;
 use App\Models\Category;
 
-class CategoryFilter
+class CategoryFilter  extends BaseFilter
 {
     protected $view='radiobutton';
 
@@ -20,6 +21,7 @@ class CategoryFilter
         return [
             'name'=>$this->name,
             'type'=>$this->view,
+            'filters'=>[ new CategoryFilterCollection(Category::dist()->get())]
         ];
     }
 

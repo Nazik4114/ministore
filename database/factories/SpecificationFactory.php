@@ -16,6 +16,12 @@ class SpecificationFactory extends Factory
      */
     public function definition()
     {
+        $brands=[
+            'Apple',
+            'Samsung',
+            'Xiaomi',
+            'Poco',
+        ];
         return [
             'key'=>'price',
             'value'=>$this->faker->numberBetween(100,10000),

@@ -24,4 +24,5 @@ class Product extends Model
     {
         return $filters->apply($query);
     }
+
 }

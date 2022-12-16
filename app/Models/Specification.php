@@ -30,4 +30,17 @@ class Specification extends Model
 
     }
 
+    public function scopeMaxPrice($query)
+    {
+        return $query->where('key','price')->max('value');
+    }
+    public function scopeMinPrice($query)
+    {
+        return $query->where('key','price')->min('value');
+    }
+    public function scopeBrands($query)
+    {
+        return $query->where('key','brand')->select('value')->withCount('product as count');
+    }
+
 }

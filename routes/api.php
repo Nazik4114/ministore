@@ -26,6 +26,8 @@ Route::group([
     Route::post('/attach/{product}/{category}',[\App\Http\Controllers\ProductController::class,'attachCategory']);
     Route::post('/attachSpec/{product}',[\App\Http\Controllers\ProductController::class,'attachSpecifications']);
     Route::get('/filter',[\App\Http\Controllers\ProductController::class,'filter']);
+    Route::get('/getFilters',[\App\Http\Controllers\ProductController::class,'getFilters']);
+
 
 });
 Route::group([
